@@ -5,14 +5,14 @@ import { Contacts } from './Contacts/Contacts';
 import { PhonebookItem } from './PhonebookItem/PhonebookItem';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const stringifiedContacts = localStorage.getItem('key');
-    const parsedContacts = JSON.parse(stringifiedContacts) ?? [];
-    setContacts(parsedContacts);
-  }, []);
+  const [contacts, setContacts] = useState(() => JSON.parse(localStorage.getItem('key')) ?? [])
+  // const [contacts, setContacts] = useState([]);
+  // useEffect(() => {
+  //   const stringifiedContacts = localStorage.getItem('key');
+  //   const parsedContacts = JSON.parse(stringifiedContacts) ?? [];
+  //   setContacts(parsedContacts);
+  // }, []);
 
   useEffect(() => {
     const stringifiedContacts = JSON.stringify(contacts);
